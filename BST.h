@@ -160,11 +160,12 @@ void inOrder(NodeBT* node){
     inOrder(node->right);                // 3. derecha
 }
 
-void postOrder(NodeBT* node) const {
+void preOrder(NodeBT* node) const {
     if (node == nullptr) return;
-    postOrder(node->left);              // 1. izquierda
-    postOrder(node->right);             // 2. derecha
     std::cout << node->data << " ";     // 3. nodo
+    preOrder(node->left);              // 1. izquierda
+    preOrder(node->right);             // 2. derecha
+    
 }
 
 void levelOrder(NodeBT* root) {
