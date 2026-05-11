@@ -21,9 +21,7 @@ class CDLinkedList {
     Node<T>* head;
 public:
     CDLinkedList() {
-        head = new Node<T>();
-        head->next = head;
-        head->prev = head;
+        head = nullptr;
     }
   bool empty() {
         return head->next == head; // si el next del head (el segundo) apunta al head, la lista esta vacia
@@ -100,6 +98,12 @@ public:
 
     void push_back(T val) {
         Node<T>* newNode = new Node(val);
+
+        if(!head){
+          head = newNode;
+          newNode->next = head;
+          head->prev = head;
+        }
 
         newNode->prev=head->prev;
         newNode->next =head;
@@ -179,6 +183,22 @@ public:
             actual->prev = ptr;
             actual = ptr;
         }while(actual!=head);
+    }
+
+    void deletenode(Node*& curr) {
+        Node* prev = curr->prev;
+        Node* next = curr->next;
+        Node* temp = curr;
+        prev->next = next;
+        next->prev = prev;
+        if (curr == head)
+            head = next;
+        if (curr == tail)
+            tail = prev;
+        curr->next = nullptr;
+        curr->prev = nullptr;
+        curr = next;
+        delete temp;
     }
 };
 
