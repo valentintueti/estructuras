@@ -186,6 +186,7 @@ public:
     }
 
     void deletenode(Node*& curr) {
+      Node* tail = head->prev
         Node* prev = curr->prev;
         Node* next = curr->next;
         Node* temp = curr;
